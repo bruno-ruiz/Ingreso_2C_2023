@@ -5,8 +5,10 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
+Bruno Thiago
+Ruiz Aranda
 Rising BTL. Empresa dedicada a la toma de datos para realizar estadísticas y censos nos pide realizar una carga de datos validada e ingresada 
-por ventanas emergentes solamente (para evitar hacking y cargas maliciosas) y luego asignarla a cuadros de textos. 
+por ventanas emergentes solamente (para evitar hacking y cargas maliciosas) y luego asignarla a cuadros de textos. txt.delte y insert
 
 Los datos requeridos son los siguientes:
     Apellido
@@ -48,15 +50,33 @@ class App(customtkinter.CTk):
 
 
     def btn_validar_on_click(self):
-        apellido = self.txt_apellido.get()
-        edad = self.txt_edad.get()
-        tipo = self.combobox_tipo.get()
-        legajo = self.txt_legajo.get()
+        apellido = prompt(title="Info",prompt="Ingrese su apellido").upper()
+        while apellido == None or not apellido.isdigit():
+            apellido = prompt(title="Info error",prompt="Ingrese su apellido").upper()
+            
+        edad = prompt(title="Info",prompt="ingrese su edad")
+        while edad == None or (edad > 17 and edad < 91):
+            edad = prompt(title="Info error",prompt="ingrese su edad")
+            edad = int(edad)
+             
+        estado_civil = prompt(title="Info",prompt="ingrese su estado_civil, soltero, casado, viudo").upper()
+        while estado_civil == None or (estado_civil != "soltero" and estado_civil != "femenino" and estado_civil != "viudo"): 
+          estado_civil = prompt(title="Info error",prompt="ingrese su estado_civil,soltero, casado, viudo").upper()
         
-        alert(title="Alert", message="\nNombre " + str(apellido) + " \nEdad " + str(edad) + "\nEstado Civil " + str(tipo) + "\nLegajo " + str(legajo))
-
+        numero_de_legajo = prompt(title="Info",prompt="Ingrese su legajo: sin ceros a la izquierda")
+        while numero_de_legajo == None or(numero_de_legajo == 4) or legajo.startswith('0'):
+            numero_de_legajo = prompt(title="Info error",prompt="Ingrese su legajo: sin ceros a la izquierda")
+            numero_de_legajo = int(numero_de_legajo)
         
-        
+        self.txt_apellido.delete(0,tkinter.END)
+        self.txt_apellido.insert(0,apellido)
+        self.txt_edad.delete(0,tkinter.END)
+        self.txt_edad.insert(0,edad)
+        self.txt_legajo.delete(0,tkinter.END)
+        self.txt_legajo.insert(0,numero_de_legajo)
+        self.combobox_tipo.delete(0,tkinter.END)
+        self.combobox_tipo.insert(0,estado_civil)
+ 
     
 if __name__ == "__main__":
     app = App()

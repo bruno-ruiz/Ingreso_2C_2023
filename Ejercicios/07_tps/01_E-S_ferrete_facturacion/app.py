@@ -4,7 +4,8 @@ from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
-'''
+''' Bruno Thiago
+    Ruiz Aranda
 Enunciado:
 Para el departamento de facturación:
     A.	Ingresar tres precios de productos y mostrar la suma de los mismos.
@@ -17,7 +18,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        # configure window
+        # configure windows
         self.title("UTN FRA")
 
         self.label_1 = customtkinter.CTkLabel(master=self, text="Producto 1")
@@ -48,18 +49,40 @@ class App(customtkinter.CTk):
         self.btn_total_iva.grid(row=5, pady=10, columnspan=2, sticky="nsew")
 
     def btn_total_on_click(self):
-        total = int(self.txt_importe_1.get()) + int(self.txt_importe_2.get()) + int(self.txt_importe_3.get())
-        alert(title="Alert", message="El resultado total sin iva es: " + str(total))
-
+        importe_uno = self.txt_importe_1.get()
+        importe_dos = self.txt_importe_2.get()
+        importe_tres = self.txt_importe_3.get()
+        importe_uno = float(importe_uno)
+        importe_dos = float(importe_dos)
+        importe_tres = float(importe_tres)
+        suma = importe_uno + importe_dos + importe_tres
+        mensaje =f"la suma de los importes es de {suma}"
+        alert(title="TP 1",message=mensaje)
+        
     def btn_promedio_on_click(self):
-        total = int(self.txt_importe_1.get()) + int(self.txt_importe_2.get()) + int(self.txt_importe_3.get())
-        promedio = total / 3
-        alert(title="Alert", message="El valor promedio es: " + str(promedio))
+        importe_uno = self.txt_importe_1.get()
+        importe_dos = self.txt_importe_2.get()
+        importe_tres = self.txt_importe_3.get()
+        importe_uno = float(importe_uno)
+        importe_dos = float(importe_dos)
+        importe_tres = float(importe_tres)
+        promedio = (importe_uno + importe_dos + importe_tres) / 3
+        alert(title="tp1",message="El promedio es de "+ str(promedio))
+        
 
     def btn_total_iva_on_click(self):
-        total = int(self.txt_importe_1.get()) + int(self.txt_importe_2.get()) + int(self.txt_importe_3.get())
-        total_c_iva = total * 1.21
-        alert(title="Alert", message="El resultado total sin iva es: " + str(total_c_iva))        
+        importe_uno= self.txt_importe_1.get()
+        importe_dos = self.txt_importe_2.get()
+        importe_tres = self.txt_importe_3.get()
+        importe_uno= float(importe_uno)
+        importe_dos = float(importe_uno)
+        importe_tres = float(importe_tres)
+        suma = importe_tres + importe_dos + importe_uno
+        Iva = suma * 0.21
+        Total = suma + Iva
+        mensaje = f"el precio final mas iva es {Total}"
+        alert(title="TP1",message=mensaje)
+          
     
 if __name__ == "__main__":
     app = App()

@@ -5,6 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
+Bruno Thiago
+Ruiz Aranda
 Enunciado:
 Al presionar el botón ‘Comenzar ingreso’, solicitar 5 números mediante prompt. 
 Calcular la suma acumulada y el promedio de los números ingresados. 
@@ -31,8 +33,18 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
-
+        i = 0
+        acumulador = 0
+        while i < 5:
+            numero = prompt(title="info",prompt="ingrese un numero") 
+            numero = int(numero) 
+            acumulador += numero
+            i += 1
+        promedio = acumulador / 5 #Promedio  se calcula FUERA del while/for
+        self.txt_suma_acumulada.delete(0,tkinter.END)
+        self.txt_suma_acumulada.insert(0,acumulador)
+        self.txt_promedio.delete(0,tkinter.END)
+        self.txt_promedio.insert(0,promedio)
     
 if __name__ == "__main__":
     app = App()

@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre:Bruno Thiago
+apellido:Ruiz Aranda
 ---
 Ejercicio: entrada_salida_09
 ---
@@ -23,13 +23,13 @@ class App(customtkinter.CTk):
         # configure window
         self.title("UTN FRA")
 
-        self.label1 = customtkinter.CTkLabel(master=self, text="Sueldo")
+        self.label1 = customtkinter.CTkLabel(master=self, text="sueldo")
         self.label1.grid(row=0, column=0, padx=20, pady=10)
         
         self.txt_sueldo = customtkinter.CTkEntry(master=self)
         self.txt_sueldo.grid(row=0, column=1)
         
-        self.label2 = customtkinter.CTkLabel(master=self, text="% de Incremento")
+        self.label2 = customtkinter.CTkLabel(master=self, text="% de incremento")
         self.label2.grid(row=1, column=0, padx=20, pady=10)
         
         self.txt_incremento = customtkinter.CTkEntry(master=self)
@@ -40,10 +40,16 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        numero = int(self.txt_sueldo.get())
-        alert("lalal", numero)
+        sueldo = self.txt_sueldo.get()
+        porcentaje= self.txt_incremento.get()
+        sueldo= float(sueldo)
+        porcentaje = float(porcentaje)
+        incremento = sueldo * porcentaje /100
+        Sueldo_Final = sueldo + incremento
+        mensaje =f"Cobrara {Sueldo_Final}"
+        alert(title="Ejercicio 9",message= mensaje)
         
-    
+        
 if __name__ == "__main__":
     app = App()
     app.mainloop()

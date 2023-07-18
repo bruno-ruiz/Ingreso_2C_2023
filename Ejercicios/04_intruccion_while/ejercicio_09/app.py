@@ -5,6 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
+Bruno Thiago
+Ruiz Aranda
 Enunciado:
 Al presionar el botón ‘Comenzar ingreso’, solicitar mediante prompt todos los números que el usuario quiera 
 hasta que presione el botón Cancelar (en el prompt). 
@@ -32,28 +34,35 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-
         flag_primera_vez = True
-        prompt_result = ""
-        
-        while prompt_result != None:
-            prompt_result = prompt(title="Prompt", prompt="Ingrese un número")
-            if prompt_result != None: 
-                numero_ingresado = int(prompt_result)
-                
-                if  numero_ingresado < minimo or flag_primera_vez == True:
-                    minimo = numero_ingresado
-                if  numero_ingresado > maximo or flag_primera_vez == True:
-                    maximo = numero_ingresado
-                    flag_primera_vez = False
-                            
-        self.txt_minimo.delete(0,100)
-        self.txt_minimo.insert(0, minimo)
-        self.txt_maximo.delete(0,100)
-        self.txt_maximo.insert(0, maximo)
+        respuesta = True
+        numero_maximo = None
+        numero_minimo = None
+            
+        while respuesta != None:
+            numero = prompt(title="info",prompt="Ingrese un número")
+            numero = int(numero)
+            
+            if flag_primera_vez == True:
+                numero_maximo = numero
+                numero_minimo = numero
+                flag_primera_vez = False
+            else:
+                if numero > numero_maximo:
+                    numero_maximo = numero
+                else:
+                    if numero < numero_minimo:
+                        numero_minimo = numero
+            
+            respuesta = prompt(title="Info",prompt="¿Desea a seguir agregando numeros?")
+
+        self.txt_maximo.delete(0,tkinter.END)
+        self.txt_maximo.insert(0,numero_maximo)
+        self.txt_minimo.delete(0,tkinter.END)
+        self.txt_minimo.insert(0,numero_minimo)
 
 
-    
+
 if __name__ == "__main__":
     app = App()
     app.mainloop()

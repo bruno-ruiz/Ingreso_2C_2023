@@ -4,7 +4,8 @@ from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
-'''
+'''Bruno Thiago
+    Ruiz Aranda
 Enunciado:
 
 2.	Para el departamento de Pinturas:
@@ -44,14 +45,18 @@ class App(customtkinter.CTk):
         self.btn_convertir_f_c.grid(row=4, pady=10, columnspan=2, sticky="nsew")
     
     def btn_convertir_c_f_on_click(self):
-        temperatura_c = float(self.txt_temperatura_c.get()) 
-        temperatura_f = (temperatura_c * 9/5) + 32 
-        alert(title="Alert", message="La tempetratura expresada en °F es : " + str(temperatura_f))
+        temperatura_ = self.txt_temperatura_c.get()
+        temperatura_C = float(Temperatura_C)
+        fharenheit_temperaturas = (Temperatura_C * 9/5) + 32
+        mensaje = f"Los ºC(Centigrados) en Fharenheit son {fharenheit_temperaturas}"
+        alert(title="TP 2",message=mensaje)
 
     def btn_convertir_f_c_on_click(self):
-        temperatura_f = float(self.txt_temperatura_f.get())
-        temperatura_c = (temperatura_f - 32) * 5/9 
-        alert(title="Alert", message="La tempetratura expresada en °C es : " + str(temperatura_c))
+        temperatura_f = self.txt_temperatura_f.get()
+        temparatura_f = float(temperatura_f)
+        centigrados_temparaturas = (temparatura_f - 32) * 5/9
+        mensaje = f"Los °F (Fharenheit) en Centígrados son {centigrados_temparaturas}"
+        alert(title="TP 2",message=mensaje)
     
     
 if __name__ == "__main__":

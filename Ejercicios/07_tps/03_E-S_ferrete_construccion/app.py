@@ -4,7 +4,8 @@ from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
-'''
+'''Bruno Thiago
+    Ruiz Aranda
 Enunciado:
 
 2.	El departamento de Construcción Rural requiere una herramienta que facilite el calculo de materiales necesarios 
@@ -62,12 +63,22 @@ class App(customtkinter.CTk):
         
 
     def btn_calcular_on_click(self):
-        largo = int(self.txt_largo.get()) 
-        ancho = int(self.txt_ancho.get())
-        total_m2 = largo * ancho
-        alert(title="Alert", message="El resultado total de metros cuadrados es: " + str(total_m2))
-    
-    
+        largo = self.txt_largo.get()
+        ancho = self.txt_ancho.get()
+        largo = float(largo)
+        ancho = float(ancho)
+        metros_cuadrados = largo * ancho
+        metros_lineales = (largo + ancho) * 2
+        postes_quebracho_grueso = (metros_lineales // 250) + 4
+        postes_quebracho_fino = (metros_lineales // 12) - postes_quebracho_grueso
+        varrillas = metros_lineales // 2 - postes_quebracho_grueso - postes_quebracho_fino
+        mensaje = (f"los metros cuadrados: {metros_cuadrados}\n"
+                   f"metros lineales: {metros_lineales}\n"
+                   f"cantidad de postes de quebracho Grueso de 2.4 mts: {postes_quebracho_grueso}\n"
+                   f"cantidad de postes de quebracho Fino de 2.2 mts: {postes_quebracho_fino}\n"
+                   f"cantidad de varillas: {varrillas}")
+        alert(title="TP3",message=mensaje)
+
 if __name__ == "__main__":
     app = App()
     app.mainloop()

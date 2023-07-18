@@ -5,6 +5,9 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
+Bruno Thiago
+Ruiz Aranda
+
 Todas las lámparas están  al mismo precio de $800 pesos final.
 		A.	Si compra 6 o más  lamparitas bajo consumo tiene un descuento del 50%. 
 		B.	Si compra 5  lamparitas bajo consumo marca "ArgentinaLuz" se hace un descuento del 40 % y si es de otra marca el descuento es del 30%.
@@ -38,37 +41,45 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        marca = self.combobox_marca.get()
-        cantidad = int(self.combobox_cantidad.get())
-        total_sin_desceunto = 800 * cantidad
-        if(cantidad >= 6):
-            total_con_desceunto = total_sin_desceunto * 0.5
-        elif(cantidad == 5):
-            if(marca == "ArgentinaLuz"):
-                total_con_desceunto = total_sin_desceunto * 0.6
-            else:
-                total_con_desceunto = total_sin_desceunto * 0.7
-        elif(cantidad == 4):
-            if(marca == "ArgentinaLuz" or marca == "FelipeLamparas" ):
-                total_con_desceunto = total_sin_desceunto * 0.75
-            else:
-                total_con_desceunto = total_sin_desceunto * 0.80
-        elif(cantidad == 3):
-            if(marca == "ArgentinaLuz"):
-                total_con_desceunto = total_sin_desceunto * 0.85
-            elif(marca == "FelipeLamparas" ):
-                total_con_desceunto = total_sin_desceunto * 0.90
-            else:
-                total_con_desceunto = total_sin_desceunto * 0.95
+        marca_lamparas = self.combobox_marca.get()
+        cantidad = self.combobox_cantidad.get()
+        cantidad = int(cantidad)
+        precio_bruto = 800 * cantidad
+        if cantidad > 5:
+            importe_descuento = precio_bruto * 0.5
         else:
-            total_con_desceunto = total_sin_desceunto
-        if(total_con_desceunto > 4000):
-            total_con_desceunto = total_sin_desceunto * 0.95
-
+            if cantidad == 5:
+                if marca_lamparas == "ArgentinaLuz":
+                    importe_descuento = precio_bruto * 0.6
+                else:
+                    importe_descuento = precio_bruto * 0.7
+            else:
+                if cantidad == 4:
+                    if marca_lamparas == "ArgentinaLuz"  or marca_lamparas == "FelipeLamparas":
+                        importe_descuento = precio_bruto * 0.75
+                    else:
+                        importe_descuento = precio_bruto * 0.80
+                else:
+                    if cantidad == 3:
+                        if marca_lamparas == "ArgentinaLuz":
+                            importe_descuento  = precio_bruto * 0.85
+                        else:
+                            if marca_lamparas == "FelipeLamparas":
+                                importe_descuento = precio_bruto * 0.90
+                            else:
+                                importe_descuento = precio_bruto * 0.95
+                        if cantidad < 3:
+                            importe_descuento = precio_bruto * 0
+                   
         
-        alert(title="Alert", message="El valor final con descuento es: " + str(total_con_desceunto))
-        
-    
+        descuento_adicional = precio_bruto * importe_descuento
+        importe_final = precio_bruto - descuento_adicional
+        if importe_final > 4000:
+            descuento_adicional = importe_descuento * 0.95
+            alert(title="TP 4",message=f"El descuento nacional que obtuvo es de: {descuento_adicional}")
+                        
+        alert(title="TP 4",message= f"El importe final con descuento es: {importe_descuento}")
+                    
 if __name__ == "__main__":
     app = App()
     app.mainloop()
